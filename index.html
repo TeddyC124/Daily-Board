@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Daily Board</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap');
 
   :root{
-    --bg:#11161B;
-    --board:#123832;
-    --board-hi:#184A42;
-    --tile-line:#0B2622;
-    --gold:#E8B84B;
-    --gold-dim:#7A6027;
-    --cream:#F3EFE3;
-    --coral:#E2574C;
-    --coral-dim:#5c2b26;
-    --dim:#8FA39C;
+    --bg:#040A2B;
+    --board:#0A1A6E;
+    --board-hi:#132A94;
+    --tile-line:#050E42;
+    --gold:#F4C542;
+    --gold-dim:#8a7228;
+    --cream:#FFFFFF;
+    --coral:#FF5C4D;
+    --coral-dim:#7a2d26;
+    --dim:#9AAEE8;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -30,108 +30,106 @@
     display:flex;
     justify-content:center;
   }
-  .wrap{width:100%;max-width:760px;}
-  h1,h2,h3{font-family:'Teko', sans-serif;font-weight:600;letter-spacing:0.02em;margin:0;}
+  .wrap{width:100%;max-width:780px;}
+  h1,h2,h3{font-family:'Anton', sans-serif;font-weight:400;letter-spacing:0.01em;margin:0;}
 
   .masthead{
     display:flex;align-items:baseline;justify-content:space-between;
-    border-bottom:2px solid var(--gold);padding-bottom:8px;margin-bottom:14px;
+    border-bottom:3px solid var(--gold);padding-bottom:8px;margin-bottom:14px;
   }
-  .masthead h1{font-size:38px;color:var(--cream);line-height:1;}
+  .masthead h1{font-size:32px;color:var(--cream);line-height:1;}
   .masthead h1 span{color:var(--gold);}
-  .masthead .tag{font-size:11px;color:var(--dim);letter-spacing:0.08em;}
+  .masthead .tag{font-size:10px;color:var(--dim);letter-spacing:0.1em;}
 
-  .panel{background:#182229;border:1px solid #223038;border-radius:6px;padding:14px;margin-bottom:14px;}
-  .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;}
+  .panel{background:#0A1454;border:1px solid #1a276e;border-radius:6px;padding:14px;margin-bottom:14px;}
   .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
   .chip{
     font-family:'Space Mono',monospace;font-size:12px;color:var(--dim);
-    background:transparent;border:1px solid #2b3a42;border-radius:100px;
+    background:transparent;border:1px solid #24337a;border-radius:100px;
     padding:6px 12px;cursor:pointer;
   }
   .chip:hover{border-color:var(--dim);color:var(--cream);}
-  .chip.active{border-color:var(--gold);color:var(--gold);background:#E8B84B14;}
-  .daily-badge{
-    display:inline-block;font-size:10px;letter-spacing:0.1em;color:#11161B;
+  .chip.active{border-color:var(--gold);color:var(--gold);background:#F4C54214;}
+  .today-badge{
+    display:inline-block;font-size:10px;letter-spacing:0.1em;color:#040A2B;
     background:var(--gold);padding:2px 8px;border-radius:3px;margin-left:8px;
     vertical-align:middle;transform:translateY(-2px);
   }
   .board-title{font-size:24px;}
   .board-sub{font-size:12px;color:var(--dim);margin-top:2px;}
 
-  .scoreboard{display:flex;gap:1px;background:#223038;border:1px solid #223038;border-radius:6px;overflow:hidden;margin-bottom:14px;}
-  .sb-cell{flex:1;background:#182229;padding:10px 8px;text-align:center;}
+  .scoreboard{display:flex;gap:2px;background:#1a276e;border:1px solid #1a276e;border-radius:6px;overflow:hidden;margin-bottom:14px;}
+  .sb-cell{flex:1;background:#0A1454;padding:10px 8px;text-align:center;}
   .sb-label{font-size:10px;color:var(--dim);letter-spacing:0.08em;}
-  .sb-value{font-family:'Teko',sans-serif;font-size:28px;color:var(--gold);line-height:1.1;}
+  .sb-value{font-family:'Anton',sans-serif;font-size:26px;color:var(--gold);line-height:1.1;}
   .sb-value.neg{color:var(--coral);}
 
   .board{
     display:grid;
     grid-template-columns:repeat(6, 1fr);
-    gap:4px;
+    gap:3px;
     background:var(--tile-line);
-    border:2px solid var(--tile-line);
-    border-radius:6px;
+    border:3px solid var(--tile-line);
+    border-radius:4px;
     overflow:hidden;
     margin-bottom:14px;
   }
   .cat-head{
-    background:#0E2925;color:var(--cream);
-    font-family:'Teko',sans-serif;font-size:14px;line-height:1.15;
-    text-align:center;padding:8px 4px;min-height:56px;
+    background:var(--board);color:var(--cream);
+    font-family:'Anton',sans-serif;font-size:13px;line-height:1.2;
+    text-align:center;padding:10px 4px;min-height:58px;
     display:flex;align-items:center;justify-content:center;
-    letter-spacing:0.02em;
+    letter-spacing:0.01em;text-transform:uppercase;
   }
   .cell{
     background:var(--board);
     color:var(--gold);
-    font-family:'Teko',sans-serif;
-    font-size:26px;
+    font-family:'Anton',sans-serif;
+    font-size:24px;
     text-align:center;
     padding:16px 4px;
     cursor:pointer;
     transition:background .12s;
   }
   .cell:hover{background:var(--board-hi);}
-  .cell.used{background:#0E1A18;color:#31423d;cursor:default;}
-  .cell.used:hover{background:#0E1A18;}
-  .cell.right{color:var(--gold);}
+  .cell.used{background:#050E42;color:#1c295e;cursor:default;}
+  .cell.used:hover{background:#050E42;}
   @media (max-width:520px){
     .board{grid-template-columns:repeat(3,1fr);}
-    .cat-head{font-size:12px;min-height:44px;}
-    .cell{font-size:20px;padding:12px 4px;}
+    .cat-head{font-size:11px;min-height:46px;}
+    .cell{font-size:19px;padding:12px 4px;}
   }
 
   .overlay{
-    position:fixed;inset:0;background:#0b0f13ee;
+    position:fixed;inset:0;background:#020617ee;
     display:flex;align-items:center;justify-content:center;
     padding:20px;z-index:50;
   }
   .clue-card{
-    background:var(--board);border:1px solid var(--board-hi);border-radius:10px;
+    background:var(--board);border:2px solid var(--gold-dim);border-radius:10px;
     max-width:520px;width:100%;padding:28px 24px;text-align:center;
   }
-  .clue-cat{font-size:12px;color:var(--gold);letter-spacing:0.1em;margin-bottom:4px;}
-  .clue-value{font-family:'Teko',sans-serif;font-size:20px;color:var(--dim);margin-bottom:14px;}
+  .clue-cat{font-family:'Anton',sans-serif;font-size:14px;color:var(--gold);letter-spacing:0.08em;margin-bottom:4px;text-transform:uppercase;}
+  .clue-value{font-family:'Anton',sans-serif;font-size:18px;color:var(--dim);margin-bottom:14px;}
   .clue-text{font-size:18px;line-height:1.5;color:var(--cream);margin-bottom:20px;}
   .answer-text{font-size:16px;color:var(--gold);margin-bottom:20px;display:none;}
   .clue-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
 
   button{
     font-family:'Space Mono',monospace;font-size:13px;border-radius:6px;
-    border:1px solid #2b3a42;cursor:pointer;padding:10px 18px;
+    border:1px solid #24337a;cursor:pointer;padding:10px 18px;
     background:transparent;color:var(--cream);
   }
   button:hover:not(:disabled){border-color:var(--dim);}
   button:disabled{opacity:0.4;cursor:default;}
-  button.primary{background:var(--gold);color:#11161B;border-color:var(--gold);font-weight:700;}
-  button.primary:hover{background:#f5cd6f;}
+  button.primary{background:var(--gold);color:#040A2B;border-color:var(--gold);font-weight:700;}
+  button.primary:hover{background:#f7d370;}
   button.right-btn{border-color:var(--gold-dim);color:var(--gold);}
   button.wrong-btn{border-color:var(--coral-dim);color:var(--coral);}
 
   .wager-row{display:flex;gap:8px;justify-content:center;margin-top:14px;}
   input[type=number],input[type=text]{
-    background:#0E1A18;border:1px solid #2b3a42;border-radius:6px;color:var(--cream);
+    background:#050E42;border:1px solid #24337a;border-radius:6px;color:var(--cream);
     font-family:'Space Mono',monospace;font-size:14px;padding:10px;width:140px;text-align:center;
   }
   input:focus{outline:none;border-color:var(--gold);}
@@ -139,9 +137,14 @@
   .end-panel{text-align:center;}
   .end-title{font-size:34px;color:var(--gold);}
   .end-sub{font-size:13px;color:var(--dim);margin-bottom:14px;}
-  .end-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+  .end-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:6px;}
+  .share-box{
+    background:#050E42;border:1px solid #24337a;border-radius:6px;
+    padding:14px;font-size:13px;line-height:1.5;white-space:pre-wrap;
+    text-align:left;margin:14px 0;
+  }
 
-  .stats-row{display:flex;gap:1px;background:#223038;border:1px solid #223038;border-radius:6px;overflow:hidden;margin-top:14px;}
+  .stats-row{display:flex;gap:2px;background:#1a276e;border:1px solid #1a276e;border-radius:6px;overflow:hidden;margin-top:14px;}
   .stats-row .sb-cell .sb-value{font-size:22px;color:var(--cream);}
 
   footer{text-align:center;font-size:11px;color:var(--dim);margin-top:20px;}
@@ -179,67 +182,72 @@
     <div class="sb-cell"><div class="sb-label">BEST SCORE</div><div class="sb-value" id="statBest">$0</div></div>
   </div>
 
-  <footer>A new board is picked automatically each day &middot; play any board anytime in practice mode</footer>
+  <footer>Board 0 is today's featured board &middot; older boards are in the archive for practice</footer>
 </div>
 
 <script>
+// BOARDS[0] is always "Today's Board" — the one shown by default and
+// labeled with the gold "TODAY" badge. To publish new content, add a new
+// board object to the TOP of this list (right after "const BOARDS = ["),
+// pushing everything else down into the archive automatically. Nothing
+// else in the code needs to change.
 const BOARDS = [
   {
-    id: 'board-1',
-    title: 'Board No. 1',
+    id: 'board-3',
+    title: "Today's Board",
     categories: [
-      { name: 'WORLD CAPITALS', clues: [
-        { value: 200, clue: "This South American country's capital, Quito, sits nearly on the equator itself.", answer: 'What is Ecuador?' },
-        { value: 400, clue: 'Canberra, not Sydney, is the capital of this country.', answer: 'What is Australia?' },
-        { value: 600, clue: "This East African nation's capital, Nairobi, is also its largest city.", answer: 'What is Kenya?' },
-        { value: 800, clue: 'This European capital sits on both banks of the Vltava River.', answer: 'What is Prague?' },
-        { value: 1000, clue: 'This country moved its capital from Almaty to Astana in 1997.', answer: 'What is Kazakhstan?' },
+      { name: 'U.S. STATE NICKNAMES', clues: [
+        { value: 200, clue: 'Known as the "Sunshine State," this is home to Miami and the Everglades.', answer: 'What is Florida?' },
+        { value: 400, clue: 'This state, nicknamed the "Land of 10,000 Lakes," is home to Minneapolis.', answer: 'What is Minnesota?' },
+        { value: 600, clue: 'This state is nicknamed the "Grand Canyon State."', answer: 'What is Arizona?' },
+        { value: 800, clue: 'Nicknamed the "Aloha State," this is the only U.S. state made up entirely of islands.', answer: 'What is Hawaii?' },
+        { value: 1000, clue: 'This state, nicknamed the "Equality State," was the first to grant women the right to vote, in 1869.', answer: 'What is Wyoming?' },
       ]},
-      { name: 'INVENTIONS', clues: [
-        { value: 200, clue: 'This Scottish-born inventor patented the telephone in 1876.', answer: 'Who is Alexander Graham Bell?' },
-        { value: 400, clue: "This Serbian-American inventor's name now labels a unit of magnetic flux density, and an electric car company.", answer: 'Who is Nikola Tesla?' },
-        { value: 600, clue: 'This English scientist is credited with inventing the World Wide Web in 1989.', answer: 'Who is Tim Berners-Lee?' },
-        { value: 800, clue: 'This Ohio-based duo achieved the first powered airplane flight at Kitty Hawk in 1903.', answer: 'Who are the Wright brothers (Wilbur and Orville)?' },
-        { value: 1000, clue: 'This Hungarian-American engineer invented the ballpoint pen that still carries his name.', answer: 'Who is László Bíró?' },
+      { name: 'GREEK MYTHOLOGY', clues: [
+        { value: 200, clue: 'This king of the Greek gods ruled from Mount Olympus and wielded a thunderbolt.', answer: 'Who is Zeus?' },
+        { value: 400, clue: 'This goddess of wisdom sprang fully grown from the head of Zeus.', answer: 'Who is Athena?' },
+        { value: 600, clue: 'This hero completed twelve labors, including slaying the Nemean lion.', answer: 'Who is Heracles (Hercules)?' },
+        { value: 800, clue: 'This Trojan War hero was invulnerable except for his heel.', answer: 'Who is Achilles?' },
+        { value: 1000, clue: 'This Titan was condemned by Zeus to hold up the sky for eternity.', answer: 'Who is Atlas?' },
       ]},
-      { name: 'BODIES OF WATER', clues: [
-        { value: 200, clue: 'This is the largest ocean on Earth.', answer: 'What is the Pacific Ocean?' },
-        { value: 400, clue: 'This sea, bordered by Israel and Jordan, is so salty that swimmers float with ease.', answer: 'What is the Dead Sea?' },
-        { value: 600, clue: 'This African lake is the second-largest freshwater lake in the world by surface area.', answer: 'What is Lake Victoria?' },
-        { value: 800, clue: 'This strait separates Spain from Morocco.', answer: 'What is the Strait of Gibraltar?', dailyDouble: true },
-        { value: 1000, clue: 'This inland sea, the largest lake in the world by area, borders Russia, Kazakhstan, and Iran.', answer: 'What is the Caspian Sea?' },
+      { name: 'MUSICAL INSTRUMENTS', clues: [
+        { value: 200, clue: 'This keyboard instrument has 88 keys, both black and white.', answer: 'What is the piano?' },
+        { value: 400, clue: 'This is the largest and lowest-pitched member of the orchestral string family, played standing or seated with a bow.', answer: 'What is the double bass?' },
+        { value: 600, clue: 'This Australian Aboriginal wind instrument is made from a hollowed-out tree trunk or branch.', answer: 'What is the didgeridoo?' },
+        { value: 800, clue: 'This wind instrument, closely associated with Scotland, uses an air-filled bag to maintain continuous sound.', answer: 'What are bagpipes?' },
+        { value: 1000, clue: "This double-reed woodwind, known for a nasal tone, famously opens Stravinsky's \"The Rite of Spring\" in an unusually high register.", answer: 'What is the bassoon?' },
       ]},
-      { name: '"ISLAND" IN THE TITLE', clues: [
-        { value: 200, clue: 'This Robert Louis Stevenson novel follows young Jim Hawkins on a hunt for buried gold.', answer: 'What is Treasure Island?' },
-        { value: 400, clue: 'This smallest U.S. state by area is, confusingly, not actually an island for most of its landmass.', answer: 'What is Rhode Island?' },
-        { value: 600, clue: 'This 2010 Martin Scorsese film starring Leonardo DiCaprio is set at a psychiatric facility called Ashecliffe.', answer: 'What is Shutter Island?' },
-        { value: 800, clue: 'This immigration processing center in New York Harbor operated from 1892 to 1954.', answer: 'What is Ellis Island?' },
-        { value: 1000, clue: 'This remote Chilean territory in the Pacific is famous for its giant stone moai statues.', answer: 'What is Easter Island?' },
+      { name: 'THE HUMAN BODY', clues: [
+        { value: 200, clue: 'This is the largest organ of the human body.', answer: 'What is the skin?' },
+        { value: 400, clue: 'This four-chambered organ pumps blood throughout the body.', answer: 'What is the heart?' },
+        { value: 600, clue: 'This is the longest bone in the human body, found in the thigh.', answer: 'What is the femur?' },
+        { value: 800, clue: 'This gland, located in the neck, produces hormones that regulate metabolism.', answer: 'What is the thyroid gland?' },
+        { value: 1000, clue: 'This is the only human bone not connected to another bone, instead suspended by muscles and ligaments in the throat.', answer: 'What is the hyoid bone?' },
       ]},
-      { name: 'ELEMENTS', clues: [
-        { value: 200, clue: 'This element, symbol O, makes up about 21% of Earth\'s atmosphere.', answer: 'What is oxygen?' },
-        { value: 400, clue: 'This lightest metal, symbol Li, is used in modern rechargeable batteries.', answer: 'What is lithium?' },
-        { value: 600, clue: 'This element, symbol Au, gets its symbol from its Latin name "aurum."', answer: 'What is gold?' },
-        { value: 800, clue: "This noble gas, symbol Ne, is famous for glowing reddish-orange in illuminated signs.", answer: 'What is neon?' },
-        { value: 1000, clue: "This is the only metal that's liquid at room temperature, symbol Hg.", answer: 'What is mercury?' },
+      { name: 'WORD ORIGINS', clues: [
+        { value: 200, clue: 'The word "salary" derives from the Latin word for this seasoning, once used to pay Roman soldiers.', answer: 'What is salt?' },
+        { value: 400, clue: 'The word "sandwich" is said to be named after this 18th-century English earl.', answer: 'Who is the Earl of Sandwich?' },
+        { value: 600, clue: 'The word "quarantine" comes from the Italian for "forty days," originally referring to an isolation period imposed on arriving ships to prevent this.', answer: 'What is the spread of plague/disease?', dailyDouble: true },
+        { value: 800, clue: 'The word "assassin" is thought to derive from an Arabic term referring to users of this plant.', answer: 'What is hashish?' },
+        { value: 1000, clue: 'The word "trivia" comes from Latin for "three roads," a reference to the kind of casual talk exchanged at this type of location.', answer: 'What is a crossroads (where three roads meet)?' },
       ]},
-      { name: 'SHAKESPEARE', clues: [
-        { value: 200, clue: 'In this tragedy, the title Danish prince contemplates "to be or not to be."', answer: 'What is Hamlet?' },
-        { value: 400, clue: 'This "Scottish play" tragedy follows a general driven to murder by prophecy and ambition.', answer: 'What is Macbeth?' },
-        { value: 600, clue: 'This comedy features a love potion, a donkey-headed weaver named Bottom, and a midsummer setting.', answer: 'What is A Midsummer Night\'s Dream?' },
-        { value: 800, clue: 'In this tragedy, a Moorish general is manipulated by his ensign Iago into jealousy and murder.', answer: 'What is Othello?' },
-        { value: 1000, clue: "This play's title siblings are twins separated in a shipwreck, leading to mistaken identity in Illyria.", answer: 'What is Twelfth Night?' },
+      { name: 'FAMOUS BRIDGES', clues: [
+        { value: 200, clue: 'This iconic suspension bridge spans the entrance to San Francisco Bay and is painted "International Orange."', answer: 'What is the Golden Gate Bridge?' },
+        { value: 400, clue: 'This bridge crosses the Thames near the Tower of London and features two Gothic towers connected by walkways.', answer: 'What is Tower Bridge?' },
+        { value: 600, clue: 'This ancient Roman-engineered bridge and aqueduct spans the Gard River in southern France.', answer: 'What is the Pont du Gard?' },
+        { value: 800, clue: 'This bridge connects Brooklyn and Manhattan and was, upon completion in 1883, the longest suspension bridge in the world.', answer: 'What is the Brooklyn Bridge?' },
+        { value: 1000, clue: 'This bridge in Sydney Harbour is nicknamed "the Coathanger" for its arched steel design.', answer: 'What is the Sydney Harbour Bridge?' },
       ]},
     ],
     final: {
-      category: 'U.S. PRESIDENTS',
-      clue: 'This president, in office for just 32 days in 1841, holds the record for shortest presidential term in U.S. history.',
-      answer: 'Who is William Henry Harrison?'
+      category: 'SPACE EXPLORATION',
+      clue: 'In July 1969, this NASA mission became the first to land humans on the Moon.',
+      answer: 'What is Apollo 11?'
     }
   },
   {
     id: 'board-2',
-    title: 'Board No. 2',
+    title: 'Archive Board',
     categories: [
       { name: 'NOBEL PRIZE WINNERS', clues: [
         { value: 200, clue: 'This physicist won the 1921 Nobel Prize in Physics for his explanation of the photoelectric effect.', answer: 'Who is Albert Einstein?' },
@@ -291,80 +299,72 @@ const BOARDS = [
     }
   },
   {
-    id: 'board-3',
-    title: 'Board No. 3',
+    id: 'board-1',
+    title: 'Archive Board',
     categories: [
-      { name: 'U.S. STATE NICKNAMES', clues: [
-        { value: 200, clue: 'Known as the "Sunshine State," this is home to Miami and the Everglades.', answer: 'What is Florida?' },
-        { value: 400, clue: 'This state, nicknamed the "Land of 10,000 Lakes," is home to Minneapolis.', answer: 'What is Minnesota?' },
-        { value: 600, clue: 'This state is nicknamed the "Grand Canyon State."', answer: 'What is Arizona?' },
-        { value: 800, clue: 'Nicknamed the "Aloha State," this is the only U.S. state made up entirely of islands.', answer: 'What is Hawaii?' },
-        { value: 1000, clue: 'This state, nicknamed the "Equality State," was the first to grant women the right to vote, in 1869.', answer: 'What is Wyoming?' },
+      { name: 'WORLD CAPITALS', clues: [
+        { value: 200, clue: "This South American country's capital, Quito, sits nearly on the equator itself.", answer: 'What is Ecuador?' },
+        { value: 400, clue: 'Canberra, not Sydney, is the capital of this country.', answer: 'What is Australia?' },
+        { value: 600, clue: "This East African nation's capital, Nairobi, is also its largest city.", answer: 'What is Kenya?' },
+        { value: 800, clue: 'This European capital sits on both banks of the Vltava River.', answer: 'What is Prague?' },
+        { value: 1000, clue: 'This country moved its capital from Almaty to Astana in 1997.', answer: 'What is Kazakhstan?' },
       ]},
-      { name: 'GREEK MYTHOLOGY', clues: [
-        { value: 200, clue: 'This king of the Greek gods ruled from Mount Olympus and wielded a thunderbolt.', answer: 'Who is Zeus?' },
-        { value: 400, clue: 'This goddess of wisdom sprang fully grown from the head of Zeus.', answer: 'Who is Athena?' },
-        { value: 600, clue: 'This hero completed twelve labors, including slaying the Nemean lion.', answer: 'Who is Heracles (Hercules)?' },
-        { value: 800, clue: 'This Trojan War hero was invulnerable except for his heel.', answer: 'Who is Achilles?' },
-        { value: 1000, clue: 'This Titan was condemned by Zeus to hold up the sky for eternity.', answer: 'Who is Atlas?' },
+      { name: 'INVENTIONS', clues: [
+        { value: 200, clue: 'This Scottish-born inventor patented the telephone in 1876.', answer: 'Who is Alexander Graham Bell?' },
+        { value: 400, clue: "This Serbian-American inventor's name now labels a unit of magnetic flux density, and an electric car company.", answer: 'Who is Nikola Tesla?' },
+        { value: 600, clue: 'This English scientist is credited with inventing the World Wide Web in 1989.', answer: 'Who is Tim Berners-Lee?' },
+        { value: 800, clue: 'This Ohio-based duo achieved the first powered airplane flight at Kitty Hawk in 1903.', answer: 'Who are the Wright brothers (Wilbur and Orville)?' },
+        { value: 1000, clue: 'This Hungarian-American engineer invented the ballpoint pen that still carries his name.', answer: 'Who is László Bíró?' },
       ]},
-      { name: 'MUSICAL INSTRUMENTS', clues: [
-        { value: 200, clue: 'This keyboard instrument has 88 keys, both black and white.', answer: 'What is the piano?' },
-        { value: 400, clue: 'This is the largest and lowest-pitched member of the orchestral string family, played standing or seated with a bow.', answer: 'What is the double bass?' },
-        { value: 600, clue: 'This Australian Aboriginal wind instrument is made from a hollowed-out tree trunk or branch.', answer: 'What is the didgeridoo?' },
-        { value: 800, clue: 'This wind instrument, closely associated with Scotland, uses an air-filled bag to maintain continuous sound.', answer: 'What are bagpipes?' },
-        { value: 1000, clue: "This double-reed woodwind, known for a nasal tone, famously opens Stravinsky's \"The Rite of Spring\" in an unusually high register.", answer: 'What is the bassoon?' },
+      { name: 'BODIES OF WATER', clues: [
+        { value: 200, clue: 'This is the largest ocean on Earth.', answer: 'What is the Pacific Ocean?' },
+        { value: 400, clue: 'This sea, bordered by Israel and Jordan, is so salty that swimmers float with ease.', answer: 'What is the Dead Sea?' },
+        { value: 600, clue: 'This African lake is the second-largest freshwater lake in the world by surface area.', answer: 'What is Lake Victoria?' },
+        { value: 800, clue: 'This strait separates Spain from Morocco.', answer: 'What is the Strait of Gibraltar?', dailyDouble: true },
+        { value: 1000, clue: 'This inland sea, the largest lake in the world by area, borders Russia, Kazakhstan, and Iran.', answer: 'What is the Caspian Sea?' },
       ]},
-      { name: 'THE HUMAN BODY', clues: [
-        { value: 200, clue: 'This is the largest organ of the human body.', answer: 'What is the skin?' },
-        { value: 400, clue: 'This four-chambered organ pumps blood throughout the body.', answer: 'What is the heart?' },
-        { value: 600, clue: 'This is the longest bone in the human body, found in the thigh.', answer: 'What is the femur?' },
-        { value: 800, clue: 'This gland, located in the neck, produces hormones that regulate metabolism.', answer: 'What is the thyroid gland?' },
-        { value: 1000, clue: 'This is the only human bone not connected to another bone, instead suspended by muscles and ligaments in the throat.', answer: 'What is the hyoid bone?' },
+      { name: '"ISLAND" IN THE TITLE', clues: [
+        { value: 200, clue: 'This Robert Louis Stevenson novel follows young Jim Hawkins on a hunt for buried gold.', answer: 'What is Treasure Island?' },
+        { value: 400, clue: 'This smallest U.S. state by area is, confusingly, not actually an island for most of its landmass.', answer: 'What is Rhode Island?' },
+        { value: 600, clue: 'This 2010 Martin Scorsese film starring Leonardo DiCaprio is set at a psychiatric facility called Ashecliffe.', answer: 'What is Shutter Island?' },
+        { value: 800, clue: 'This immigration processing center in New York Harbor operated from 1892 to 1954.', answer: 'What is Ellis Island?' },
+        { value: 1000, clue: 'This remote Chilean territory in the Pacific is famous for its giant stone moai statues.', answer: 'What is Easter Island?' },
       ]},
-      { name: 'WORD ORIGINS', clues: [
-        { value: 200, clue: 'The word "salary" derives from the Latin word for this seasoning, once used to pay Roman soldiers.', answer: 'What is salt?' },
-        { value: 400, clue: 'The word "sandwich" is said to be named after this 18th-century English earl.', answer: 'Who is the Earl of Sandwich?' },
-        { value: 600, clue: 'The word "quarantine" comes from the Italian for "forty days," originally referring to an isolation period imposed on arriving ships to prevent this.', answer: 'What is the spread of plague/disease?', dailyDouble: true },
-        { value: 800, clue: 'The word "assassin" is thought to derive from an Arabic term referring to users of this plant.', answer: 'What is hashish?' },
-        { value: 1000, clue: 'The word "trivia" comes from Latin for "three roads," a reference to the kind of casual talk exchanged at this type of location.', answer: 'What is a crossroads (where three roads meet)?' },
+      { name: 'ELEMENTS', clues: [
+        { value: 200, clue: 'This element, symbol O, makes up about 21% of Earth\'s atmosphere.', answer: 'What is oxygen?' },
+        { value: 400, clue: 'This lightest metal, symbol Li, is used in modern rechargeable batteries.', answer: 'What is lithium?' },
+        { value: 600, clue: 'This element, symbol Au, gets its symbol from its Latin name "aurum."', answer: 'What is gold?' },
+        { value: 800, clue: "This noble gas, symbol Ne, is famous for glowing reddish-orange in illuminated signs.", answer: 'What is neon?' },
+        { value: 1000, clue: "This is the only metal that's liquid at room temperature, symbol Hg.", answer: 'What is mercury?' },
       ]},
-      { name: 'FAMOUS BRIDGES', clues: [
-        { value: 200, clue: 'This iconic suspension bridge spans the entrance to San Francisco Bay and is painted "International Orange."', answer: 'What is the Golden Gate Bridge?' },
-        { value: 400, clue: 'This bridge crosses the Thames near the Tower of London and features two Gothic towers connected by walkways.', answer: 'What is Tower Bridge?' },
-        { value: 600, clue: 'This ancient Roman-engineered bridge and aqueduct spans the Gard River in southern France.', answer: 'What is the Pont du Gard?' },
-        { value: 800, clue: 'This bridge connects Brooklyn and Manhattan and was, upon completion in 1883, the longest suspension bridge in the world.', answer: 'What is the Brooklyn Bridge?' },
-        { value: 1000, clue: 'This bridge in Sydney Harbour is nicknamed "the Coathanger" for its arched steel design.', answer: 'What is the Sydney Harbour Bridge?' },
+      { name: 'SHAKESPEARE', clues: [
+        { value: 200, clue: 'In this tragedy, the title Danish prince contemplates "to be or not to be."', answer: 'What is Hamlet?' },
+        { value: 400, clue: 'This "Scottish play" tragedy follows a general driven to murder by prophecy and ambition.', answer: 'What is Macbeth?' },
+        { value: 600, clue: 'This comedy features a love potion, a donkey-headed weaver named Bottom, and a midsummer setting.', answer: 'What is A Midsummer Night\'s Dream?' },
+        { value: 800, clue: 'In this tragedy, a Moorish general is manipulated by his ensign Iago into jealousy and murder.', answer: 'What is Othello?' },
+        { value: 1000, clue: "This play's title siblings are twins separated in a shipwreck, leading to mistaken identity in Illyria.", answer: 'What is Twelfth Night?' },
       ]},
     ],
     final: {
-      category: 'SPACE EXPLORATION',
-      clue: 'In July 1969, this NASA mission became the first to land humans on the Moon.',
-      answer: 'What is Apollo 11?'
+      category: 'U.S. PRESIDENTS',
+      clue: 'This president, in office for just 32 days in 1841, holds the record for shortest presidential term in U.S. history.',
+      answer: 'Who is William Henry Harrison?'
     }
   },
 ];
 
-function todayKey(){
-  const d = new Date();
-  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-}
-function dailyBoardIndex(){
-  const start = new Date(2026,0,1).getTime();
-  const days = Math.floor((Date.now() - start) / 86400000);
-  return ((days % BOARDS.length) + BOARDS.length) % BOARDS.length;
-}
-
 let state = null;
 
-function newGame(boardIndex, isDaily){
+function newGame(boardIndex, isToday){
   state = {
     boardIndex,
-    isDaily,
+    isToday,
     score: 0,
     used: new Set(),          // "catIdx-clueIdx"
+    order: [],                // records {correct} in the order clues were answered, for the share grid
     totalClues: BOARDS[boardIndex].categories.length * BOARDS[boardIndex].categories[0].clues.length,
     finalDone: false,
+    finalCorrect: null,
     over: false,
     active: null,             // { catIdx, clueIdx, wager } while a clue overlay is open
   };
@@ -385,6 +385,7 @@ function closeClueAndGrade(correct){
   const { catIdx, clueIdx, wager } = state.active;
   const key = catIdx + '-' + clueIdx;
   state.used.add(key);
+  state.order.push({ correct });
   const amount = wager != null ? wager : board().categories[catIdx].clues[clueIdx].value;
   state.score += correct ? amount : -amount;
   state.active = null;
@@ -402,7 +403,7 @@ function setDailyDoubleWager(amount){
 }
 
 function openFinal(){
-  state.active = { final: true, wager: null, revealed: false };
+  state.active = { final: true, wager: null };
   renderOverlay();
 }
 
@@ -416,13 +417,14 @@ function finishFinal(correct){
   state.score += correct ? amount : -amount;
   state.active = null;
   state.finalDone = true;
+  state.finalCorrect = correct;
   state.over = true;
   recordResult();
   render();
 }
 
 async function recordResult(){
-  if (!state.isDaily) return;
+  if (!state.isToday) return;
   try {
     let stats = { played: 0, best: null };
     try {
@@ -455,8 +457,8 @@ function renderChips(){
   BOARDS.forEach((b, i) => {
     const chip = document.createElement('button');
     chip.className = 'chip' + (state.boardIndex === i ? ' active' : '');
-    chip.textContent = b.title;
-    chip.onclick = () => newGame(i, i === dailyBoardIndex());
+    chip.textContent = i === 0 ? "Today's Board" : `Archive ${i}`;
+    chip.onclick = () => newGame(i, i === 0);
     row.appendChild(chip);
   });
 }
@@ -586,6 +588,22 @@ function renderOverlay(){
   };
 }
 
+function buildShareText(){
+  const b = board();
+  const squares = state.order.map(o => o.correct ? '🟩' : '🟥').join('');
+  const rows = [];
+  for (let i = 0; i < squares.length; i += 6) rows.push(squares.slice(i, i + 6));
+  const finalMark = state.finalCorrect ? '🟩' : '🟥';
+  const link = window.location.href.split('?')[0];
+  return [
+    `THE DAILY BOARD — ${b.title}`,
+    `Score: $${state.score.toLocaleString()}`,
+    rows.join('\n'),
+    `Final: ${finalMark}`,
+    link,
+  ].join('\n');
+}
+
 function renderEnd(){
   const endArea = document.getElementById('endArea');
   if (!state.over){ endArea.style.display = 'none'; return; }
@@ -596,13 +614,21 @@ function renderEnd(){
     <div class="panel end-panel">
       <div class="end-title">${title}</div>
       <div class="end-sub">Final score on ${b.title}: $${state.score.toLocaleString()}</div>
+      <div class="share-box" id="shareBox">${buildShareText()}</div>
       <div class="end-actions">
-        <button class="primary" id="nextBoardBtn">Play another board</button>
+        <button class="primary" id="copyBtn">Copy to share</button>
+        <button id="nextBoardBtn">Play the archive</button>
       </div>
     </div>`;
+  document.getElementById('copyBtn').onclick = () => {
+    navigator.clipboard.writeText(buildShareText()).then(() => {
+      document.getElementById('copyBtn').textContent = 'Copied!';
+      setTimeout(() => { document.getElementById('copyBtn').textContent = 'Copy to share'; }, 1500);
+    }).catch(() => {});
+  };
   document.getElementById('nextBoardBtn').onclick = () => {
     const next = (state.boardIndex + 1) % BOARDS.length;
-    newGame(next, false);
+    newGame(next, next === 0);
   };
 }
 
@@ -610,7 +636,7 @@ function render(){
   renderChips();
   const b = board();
   document.getElementById('boardTitle').innerHTML = `
-    <div class="board-title">${b.title}${state.isDaily ? '<span class="daily-badge">DAILY</span>' : ''}</div>
+    <div class="board-title">${b.title}${state.isToday ? '<span class="today-badge">TODAY</span>' : ''}</div>
     <div class="board-sub">6 categories &middot; one Daily Double &middot; Final round</div>
   `;
   document.getElementById('scoreDisplay').textContent = '$' + state.score.toLocaleString();
@@ -621,7 +647,7 @@ function render(){
   renderEnd();
 }
 
-newGame(dailyBoardIndex(), true);
+newGame(0, true);
 loadStats();
 </script>
 </body>
